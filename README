@@ -1,0 +1,10 @@
+Exercici per jugar al set i mig en mode client (javascript). Un jugador juga en mode manual i la banca automàticament.
+
+L'algorisme actual de la banca per jugar és simplement plantar-se quan té 5,5 o més.
+Un algorisme molt bàsic però com el codi és completament testejable després podem mesurar quin impacte quantificable tenen les modificacions d'aquest algorisme en la millora dels resultats.
+
+Aquesta aplicació es pot considerar un prototip no apte per a producció, és una simple prova de concepte sense cap seguretat i garantía, ja que al residir tota la informació en la part client no podriem garantir cap transparència.
+
+El codi és una mescla de javascript utilitzant programació orientada a objectes i jquery per a la part gràfica i de manipulació de l'arbre DOM.
+
+Per testejar el codi javascript utilitzem Qunit i per provar el grau de cobertura dels tests JSCover ver 0.2.2
