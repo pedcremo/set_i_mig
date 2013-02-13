@@ -1,0 +1,73 @@
+Guió
+-----
+
+
+Crear JUGADOR 1
+Crear JUGADOR banca
+
+
+
+Nova ronda
+------------------------------------------
+Netegem tapet
+Barallar Cartes (Array amb elements CARTA)
+
+Repartir Una carta a cadascun dels jugadors i a la banca (TAPADA) (El jugador la pot destapar per fer-la pública amb un doble click) 
+
+
+MENTRES els Jugador 1 no haja tancat totes les jugades[
+
+		Al Jugador 1 amb la Jugada actual li preguntem
+		
+		¿Tancar jugada o demanar carta?
+		
+		
+		SI tanquem jugada
+			Si Jugador 1 té mes jugades, la següent passa a ser jugada Actual
+			SINO eixim del MENTRES
+			
+		SINO tanquem jugada
+			Agafem nova Carta per a la Jugada actual 
+			
+			Si la jugada Actual no té carta oculta la repartim tapada
+			SINO la repartim Oberta
+			
+			SI la carta repartida és la segon i la primera és un 0,5 o un 1 aleshores
+				Preguntem si volem obrir nova jugada o continuar amb l'actual
+				
+				Si obrim jugada creem una nova jugada per al Jugador Actual i li afegim aquesta carta com a primera de la jugada (destapada)
+					Repartim nova carta al jugador actual
+					
+					MENTRES nova carta siga == a 0,5 o 1 i no hi hagen més de 4 jugades obertes aleshores [
+						Preguntem si volem obrir nova jugada o continuar amb la carta extreta des de la 1ra jugada
+						Si obrim jugada creem una nova jugada per al Jugador Actual i li afegim aquesta carta com a primera de la jugada (destapada)
+						SI NO afegim carta a la jugada Actual 
+					]
+					
+					Afegim carta a la jugada Actual 
+				SINO afegim carta a la jugada Actual 
+			SINO
+				Afegim carta a la jugada Actual
+				
+				
+			Si Jugada Actual excedeix 7 i mig, aleshores tanquem jugada la declarem invàlida i li afegim un +1 a la puntuació de la Banca
+			passem a la següent jugada o jugador
+			
+
+]
+
+
+LA banca Va extraient cartes fins que es planta o passa segons un algorisme
+
+Si es passa
+	contem totes les jugades vàlides de cadascun dels jugadors que no se'n hagen passa't i per cada una d'elles un +1 a la puntuació del jugador
+Si no es passa i es planta
+	contem totes les jugades vàlides de cadascun dels jugadors que tinguen més puntuació que la banca i afegim un +1 a la puntuació del jugador
+	per contra afegim un +1 a la banca
+
+
+INFORME'M PER PANTALLA
+--------------------------------------------------
+
+TORNEM a Nova ronda o Abandonem joc
+	

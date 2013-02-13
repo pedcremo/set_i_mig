@@ -1,0 +1,99 @@
+body{
+	background: #000000 url('../images/tapet.jpg') no-repeat;
+	color:#ffffff;
+}
+
+#controls{
+	position:absolute;
+	top:500;
+}
+
+h1{
+	color:#ffffff;
+}
+
+.carta_meua{
+	position:absolute;	
+	left:10;
+}
+.carta_meua_oculta{
+	position:absolute;	
+	left:10;
+}
+.carta_banca_oculta{
+	position:absolute;	
+	left:10;
+}
+.carta_banca{
+	position:absolute;	
+	left:10;
+}
+
+
+#tancar_jugada{
+	position:absolute;
+	top:130;
+	left:50;
+
+}
+
+#meua_jugada1{
+	position:absolute;
+	top:150;
+	left:30;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+
+#meua_jugada2{
+	position:absolute;
+	top:150;
+	left:200;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+
+#meua_jugada3{
+	position:absolute;
+	top:150;
+	left:370;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+#meua_jugada4{
+	position:absolute;
+	top:150;
+	left:540;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+#banca_jugada{
+	position:absolute;
+	top:490;
+	left:540;
+	text-align:center;
+	border: 4px dashed #ff0000;
+	height: 208px;
+	width: 150px;
+}
+
+#info_jugada{
+	position:absolute;
+	top:540;
+	left:270;
+	text-align:center;
+	border: 0px solid #ffffff;
+	padding:10px;
+	background-color: rgba(255, 255, 255, 0.1);
+	height: 170px;
+	width: 210px;
+}
+

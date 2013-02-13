@@ -1,0 +1,121 @@
+body{
+	background: #000000 url('../images/tapet.jpg') no-repeat;
+	color:#ffffff;
+}
+
+#controls{
+	position:absolute;
+	top:500;
+}
+
+h1{
+	color:#ffffff;
+}
+
+.current_hand{
+	position:absolute;
+	
+	left:10;
+}
+.current_hand2{
+	position:absolute;
+	left:10;
+	top:0;
+	width: 150px;
+}
+img#public{
+	visibility:hidden;
+}
+
+.win{
+	color:green;
+}
+.lose{
+	color:red;
+}
+
+#meua_jugada1{
+	position:absolute;
+	top:130;
+	left:30;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+
+#meua_jugada2{
+	position:absolute;
+	top:130;
+	left:200;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+
+#meua_jugada3{
+	position:absolute;
+	top:130;
+	left:370;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+#meua_jugada4{
+	position:absolute;
+	top:130;
+	left:540;
+	text-align:center;
+	border: 4px dashed #72ac6f;
+	height: 208px;
+	width: 150px;
+}
+#banca_jugada{
+	position:absolute;
+	top:430;
+	left:540;
+	text-align:center;
+	border: 4px dashed #ff0000;
+	height: 208px;
+	width: 150px;
+}
+
+#info_jugada{
+	position:absolute;
+	top:430;
+	left:340;
+	text-align:center;
+	border: 2px solid #ffffff;
+	height: 208px;
+	width: 250px;
+}
+
+#meua_jugada_vista{
+	clear:both;
+	border: 1px solid gray;
+	height: 230px;
+	width: 790px;
+}
+
+#btnHit, #btnStick, #btnRestart{
+	display:none;
+	float:left;
+}
+
+h3 {
+	display: inline;
+	padding-right: 40px;
+}
+
+#result{
+	display:none;
+	position:absolute;
+	top: 100px;
+	left: 20px;
+}
+#result > img {
+	width: 500px;
+	height: 250px;
+}
