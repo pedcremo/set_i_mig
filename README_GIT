@@ -1,4 +1,9 @@
-﻿ALUMNES 
+﻿URL projecte
+-------------
+https://github.com/pedcremo/set_i_mig.git
+
+
+ALUMNES 
 ---------
 Instal·lar git a linux "sudo apt-get install git-core" i clonar repositori (Sols es fa una vegada)
 git clone https://github.com/pedcremo/scriptkana.git
