@@ -21,12 +21,10 @@ function pintarCarta(carta, num_jugada, index,tipus_jugador){
 		carta_class="carta_banca";
 	}
 	
-	if (carta.getIsOculta()){
-			//alert(num_jugada+" index="+index);
+	if (carta.getIsOculta()){			
 			tipus_jugador=="NORMAL"?carta_class="carta_meua_oculta":carta_class="carta_banca_oculta";
 			img_carta="images/baralla/revers_small.jpg";
-	}else{				
-			//alert(num_jugada+" index2="+index);	
+	}else{					
 			img_carta='images/baralla/'+carta.getPal()+'/'+carta.getPal()+'_'+carta.getNom()+'.jpg';
 	}
 	
@@ -46,7 +44,7 @@ function pintarCarta(carta, num_jugada, index,tipus_jugador){
 }
 
 function pintarPuntuacio(jugador_){
-	console.log("PintarPuntuacio "+jugador_);
+	//console.log("PintarPuntuacio "+jugador_);
 	if (jugador_.getTipus()=="NORMAL"){	
 		$("#punts_jugador1").empty();
 		for (var i=0; i<jugador_.getNumJugades();i++){
