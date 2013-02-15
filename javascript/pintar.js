@@ -41,6 +41,7 @@ function pintarCarta(carta, num_jugada, index,tipus_jugador){
 						  
 		$d.css("left",left_inc);
 		$d.css("top",top_inc);
+	return $d; //Added simply for testing purpose
 }
 
 function pintarPuntuacio(jugador_){

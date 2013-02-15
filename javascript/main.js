@@ -11,8 +11,9 @@ $(document).ready(function(){
 	//Creem la baralla de cartes
 	var baralla_ = new Baralla();
 	//Nova ronda
-	//Netegem tapet
+	
 	function nova_ronda(){
+		//Netegem tapet
 		jugador1.netejarJugades();
 		banca.netejarJugades();
 		//Barallar Cartes (Array amb elements CARTA)
@@ -36,10 +37,11 @@ $(document).ready(function(){
 			  			
 			  			jugaBanca();
 			  			
-			  		}else{
+			  		}
+			  		/*else{
 			  			banca.getJugada(0).tancarJugada();
 			  			alert("La banca guanya directament");
-			  		}
+			  		}*/
 			  		
 		}
 	});
@@ -47,6 +49,7 @@ $(document).ready(function(){
 	
 	$("#btnAgarraCarta").click( function(){
 		if (jugador1.getJugadaActual().esValida() && !jugador1.getJugadaActual().estaTancada()){
+			//alert("agarra");
 			var carta_aux=baralla_.agarraCarta();
 			if (jugador1.esPosibleObrir(carta_aux)) {
 			
@@ -67,7 +70,8 @@ $(document).ready(function(){
 			  		
 			  }			
 		}else{		
-			if (! banca.estaJugant()) nova_ronda();
+			//alert("nova ronda "+banca.estaJugant());
+			if (banca.estaJugant()==false) nova_ronda();
 		}
 	});
 	
@@ -101,7 +105,7 @@ $(document).ready(function(){
 			carta.setOculta(false);
 	});
 	
-	$(document).on('dblclick','.carta_meua',function(event){
+	/*$(document).on('dblclick','.carta_meua',function(event){
   		var raw_id_carta=$(this).attr('id');
   		var ids_carta=raw_id_carta.split('_');
   		var carta=jugador1.getJugada(ids_carta[1]).getCarta(ids_carta[2]);
@@ -109,7 +113,7 @@ $(document).ready(function(){
     		$(this).children(":first").attr('src','images/baralla/revers_small.jpg');
     		alert("Rrrrr");
 			carta.setOculta(true);
-	});
+	});*/
 		
 	function jugaBanca(){
 	     var continua=false;
