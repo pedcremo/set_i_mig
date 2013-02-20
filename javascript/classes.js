@@ -1,4 +1,37 @@
 ﻿/**
+* Crea una instància de partida
+*
+* @constructor
+* @this {Partida}
+* @param {Jugador} jugador1 El 1er jugador "normal" (no banca) de la partida
+* @param {Jugador} banca El jugador banca de la partida
+*/
+function Partida(jugador1,banca){
+
+	var jugador_normal=jugador1;
+	var jugador_banca=banca;
+	
+	jugador_normal.setPartida(this); //Enregistrem partida del jugador
+	jugador_banca.setPartida(this); //Enregistrem partida de la banca
+	
+	//Creem el motor gràfic
+	var motor_grafic= new setimigEngine(this);
+	
+	this.getSetimigEngine=function(){
+		return motor_grafic;
+	}
+	
+	this.getJugador=function(){
+		return jugador_normal;
+	}
+	
+	this.getBanca=function(){
+		return_banca;
+	}
+
+}
+
+/**
  * Crea una instància d'un jugador del set i mig 
  *
  * @constructor
@@ -11,7 +44,16 @@ function Jugador(nom_){
 	var mode_joc="MANUAL"; //MANUAL o AUTOMATIC
 	var jugades=new Array(); //Màxim 4 jugades obertes
 	var jugada_actual=0; //Manté una referència a la jugada actual	
+	var partida=null; //Partida a la que està subscrit el jugador
 	
+	
+	/**@public*/
+	this.setPartida=function(partida_){
+		partida=partida_;
+	}
+	this.getPartida=function(){
+		return partida;
+	}
 	 /**@public*/
 	this.getNom=function(){
 		return nom;	
@@ -52,7 +94,7 @@ function Jugador(nom_){
 	this.afegir_carta_a_jugada_actual=function(carta_){
 		if(jugades.length==0) jugades[0]=new Jugada(carta_,this);
 		else jugades[jugada_actual].afegir_carta(carta_);
-		pintarPuntuacio(this);
+		if (partida != null) partida.getSetimigEngine().pintarPuntuacio(this);
 	}
 	
 	/**
@@ -106,11 +148,7 @@ function Jugador(nom_){
 	this.netejarJugades=function(){
 		jugada_actual=0;
 		jugades=new Array();
-		$("div#tapet").empty();
-		/*if (this.tipus=="NORMAL")
-			$("div.jugador_").remove();
-		else
-			$("div#banca_jugada").remove();*/
+		$("div#tapet").empty();		
 	}
 	
 	/**
@@ -170,17 +208,20 @@ function Jugada(carta_,jugador_){
 	if (jugador_.getNumJugades()>=1 && jugador_.getTipus()=="NORMAL") {
 		carta_.setOculta(false);
 		jugador_.getJugada(0).getCarta(0).setOculta(false);
-		pintarCarta(jugador_.getJugada(0).getCarta(0),1,0,"NORMAL");
+		
+		if (jugador.getPartida() != null) jugador.getPartida().getSetimigEngine().pintarCarta(jugador_.getJugada(0).getCarta(0),0,0,"NORMAL");
+		//motor_grafic.pintarCarta(jugador_.getJugada(0).getCarta(0),0,0,"NORMAL");
 		
 	//La primera carta de la 1ra jugada la repartim oculta
 	}else{
 		carta_.setOculta(true);
 	}
 	cartes[0]=carta_;
-	//alert(jugador.getNom()+" "+jugador.getTipus()+" "+jugador.getNumJugades());
-	pintarJugada(jugador.getNom(),jugador.getTipus(),jugador.getNumJugades());			 
-	pintarCarta(carta_,jugador.getNumJugades()+1,0,jugador.getTipus());
-	
+	if (jugador.getPartida() != null) {
+		
+		jugador.getPartida().getSetimigEngine().pintarJugada(jugador.getNom(),jugador.getTipus(),jugador.getNumJugades());			 
+		jugador.getPartida().getSetimigEngine().pintarCarta(carta_,jugador.getNumJugades(),0,jugador.getTipus());
+	}
 	
 	var valida=true;
 	var tancada=false;
@@ -200,21 +241,16 @@ function Jugada(carta_,jugador_){
 			//Pintem abans de descobrir si la jugada és vàlida o no 
 			var ja=jugador.getIndexJugadaActual();			
 			if (!this.hiHaAlgunaCartaOculta() && jugador_.getTipus()=="NORMAL") carta_.setOculta(true); 
-			pintarCarta(carta_,ja+1,cartes.length-1,jugador.getTipus());
+			
+			if (jugador.getPartida() != null)	jugador.getPartida().getSetimigEngine().pintarCarta(carta_,ja,cartes.length-1,jugador.getTipus());
 			
 			valida=this.checkValidesa();
 			if (!valida) {				
-				
-				this.tancarJugada();
-				//carta_.setOculta(false);
-				//pintarCarta(carta_,ja+1,cartes.length-1,jugador.getTipus());
+				this.tancarJugada();				
 			}else if(puntuacio==7.5){
 				//Si tenim un 7.5 tanquem la jugada
 				this.tancarJugada();			
-			}
-			
-			
-			
+			}			
 		}else{
 			throw new Error("JugadaInvalida");
 		}
@@ -243,7 +279,7 @@ function Jugada(carta_,jugador_){
 		
 		if (!valida){
 			//alert("PAra El carro "+valida);
-			invalidarJugada(jugador.getIndexJugadaActual(),jugador.getTipus());		 
+			if (jugador.getPartida() != null) jugador.getPartida().getSetimigEngine().invalidarJugada(jugador.getIndexJugadaActual(),jugador.getTipus());		 
 		}
 		
 		jugador.changeJugadaActual();
@@ -358,7 +394,7 @@ function Baralla(){
 	
 	this.agarraCarta=function(){
 		var carta=baralla_priv.splice(0,1);
-		console.log(carta[0]+" Ara baralla_priv.length="+baralla_priv.length);
+		//console.log(carta[0]+" Ara baralla_priv.length="+baralla_priv.length);
 		return carta[0];
 	}
 	

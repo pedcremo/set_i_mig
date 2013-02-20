@@ -37,7 +37,7 @@ h1{
 
 }
 
-#meua_jugada1{
+#meua_jugada0{
 	position:absolute;
 	top:150;
 	left:30;
@@ -47,7 +47,7 @@ h1{
 	width: 150px;
 }
 
-#meua_jugada2{
+#meua_jugada1{
 	position:absolute;
 	top:150;
 	left:200;
@@ -57,7 +57,7 @@ h1{
 	width: 150px;
 }
 
-#meua_jugada3{
+#meua_jugada2{
 	position:absolute;
 	top:150;
 	left:370;
@@ -66,7 +66,7 @@ h1{
 	height: 208px;
 	width: 150px;
 }
-#meua_jugada4{
+#meua_jugada3{
 	position:absolute;
 	top:150;
 	left:540;

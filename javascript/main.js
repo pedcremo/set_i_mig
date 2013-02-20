@@ -1,17 +1,22 @@
 $(document).ready(function(){
 
 	//Crear JUGADOR 1
-	jugador1=new Jugador("Pere");
+	var jugador1=new Jugador("Pere");
 
 	//Crear JUGADOR banca
-	banca= new Jugador("Usura");
+	var banca= new Jugador("Usura");
 	banca.setTipus("BANCA");
 	banca.setModeJoc("AUTOMATIC");
 	
+	//Única variable global
+	var partida=new Partida(jugador1,banca);
+		
 	//Creem la baralla de cartes
 	var baralla_ = new Baralla();
-	//Nova ronda
 	
+	
+	
+	//Nova ronda. Tornem a repartir cartes	
 	function nova_ronda(){
 		//Netegem tapet
 		jugador1.netejarJugades();
@@ -33,27 +38,22 @@ $(document).ready(function(){
 			  		if (jugador1.hiHaAlgunaJugadaValida()){
 						
 						banca.getJugada(0).getCarta(0).setOculta(false);
-						pintarCarta(banca.getJugada(0).getCarta(0), 1,0,"BANCA");
+						partida.getSetimigEngine().pintarCarta(banca.getJugada(0).getCarta(0), 0,0,"BANCA");
 			  			
 			  			jugaBanca();
 			  			
-			  		}
-			  		/*else{
-			  			banca.getJugada(0).tancarJugada();
-			  			alert("La banca guanya directament");
-			  		}*/
-			  		
+			  		}			  		
 		}
 	});
 	
 	
 	$("#btnAgarraCarta").click( function(){
 		if (jugador1.getJugadaActual().esValida() && !jugador1.getJugadaActual().estaTancada()){
-			//alert("agarra");
+			;
 			var carta_aux=baralla_.agarraCarta();
 			if (jugador1.esPosibleObrir(carta_aux)) {
 			
-				obrimJugada(carta_aux);
+				partida.getSetimigEngine().obrimJugada(carta_aux);
 			}else{
 				jugador1.afegir_carta_a_jugada_actual(carta_aux);
 			}
@@ -61,7 +61,7 @@ $(document).ready(function(){
 			if(jugador1.estaJugant()==false){
 					if (jugador1.hiHaAlgunaJugadaValida()){
 						banca.getJugada(0).getCarta(0).setOculta(false);
-						pintarCarta(banca.getJugada(0).getCarta(0), 1,0,"BANCA");
+						partida.getSetimigEngine().pintarCarta(banca.getJugada(0).getCarta(0), 0,0,"BANCA");
 			  			jugaBanca();	  			
 			  		}else{
 			  			banca.getJugada(0).tancarJugada();
@@ -105,15 +105,7 @@ $(document).ready(function(){
 			carta.setOculta(false);
 	});
 	
-	/*$(document).on('dblclick','.carta_meua',function(event){
-  		var raw_id_carta=$(this).attr('id');
-  		var ids_carta=raw_id_carta.split('_');
-  		var carta=jugador1.getJugada(ids_carta[1]).getCarta(ids_carta[2]);
-    		$(this).attr("class","carta_meua_oculta");
-    		$(this).children(":first").attr('src','images/baralla/revers_small.jpg');
-    		alert("Rrrrr");
-			carta.setOculta(true);
-	});*/
+	
 		
 	function jugaBanca(){
 	     var continua=false;
@@ -142,9 +134,9 @@ $(document).ready(function(){
 			for (var i=0;i<jugador1.getNumJugades();i++){
 				if (jugador1.getJugada(i).esValida() && jugador1.getJugada(i).estaTancada()){
 					if (jugador1.getJugada(i).getPuntuacioJugada()>punts_banca){
-						pintarWin(i,jugador1.getTipus());
+						partida.getSetimigEngine().pintarWin(i,jugador1.getTipus());
 					}else{
-						invalidarJugada(i,jugador1.getTipus());
+						partida.getSetimigEngine().invalidarJugada(i,jugador1.getTipus());
 					}
 				}
 			}
